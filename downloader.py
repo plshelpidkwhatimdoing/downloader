@@ -5,10 +5,23 @@ import re
 os.system('cls' if os.name == 'nt' else 'clear')
 print("1 - yt-dlp")
 print("2 - gallery-dl")
-print("3 - aria2c\n")
+print("3 - aria2c")
+print('Use "--aliases" to see command aliases I have added\n')
 dl = input("Downloader to use: ")
 
-if dl == "1":
+if dl == "--aliases":
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("yt-dlp aliases:\n"
+          "-d : --downloader\n"
+          "-ws : --write-subs\n"
+          "-was : --write-auto-subs\n"
+          "\ngallery-dl: aliases:\n"
+          "-z : --zip\n"
+          "\nno current aliases for aria2c"
+          )
+    os.system('pause')
+
+elif dl == "1":
     
     os.system('cls' if os.name == 'nt' else 'clear')
     mode = input("Mode: ")
@@ -56,7 +69,7 @@ if dl == "1":
         #process each option individually
         for i in range(len(options)):
             if options[i] == '-d':
-                options[i] = '--downloader aria2c'
+                options[i] = '--downloader'
         
         #join options back together
         moreops = ' '.join(options)
@@ -93,7 +106,7 @@ if dl == "1":
         options = moreops.split()
         for i in range(len(options)):
             if options[i] == '-d':
-                options[i] = '--downloader aria2c'
+                options[i] = '--downloader'
         
         moreops = ' '.join(options)
         
@@ -128,5 +141,9 @@ elif dl == "2":
 
 elif dl == "3": #add aria2c
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("Not added yet")
+    ariaoptions = input("Options for aria2c: ")
+    url = input("Url: ")
+    print(f"aria2c {ariaoptions} {url}")
+    run = f"aria2c {ariaoptions} {url}"
+    subprocess.run(run, shell=True)
     os.system('pause')
