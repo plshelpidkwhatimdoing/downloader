@@ -124,26 +124,35 @@ elif dl == "2":
         run = f"gallery-dl -h"
         subprocess.run(run, shell=True)
         os.system('pause')
+    
+    else:
         
-    pattern = r'(^|\s)-z($|\s)'
+        pattern = r'(^|\s)-z($|\s)'
 
-    def replace_with_spaces(match):
-        option = match.group(0)
-        return ' --zip ' if option.strip() == '-z' else option
-    mode = re.sub(pattern, replace_with_spaces, mode)
+        def replace_with_spaces(match):
+            option = match.group(0)
+            return ' --zip ' if option.strip() == '-z' else option
+        mode = re.sub(pattern, replace_with_spaces, mode)
 
-    url = input("Url: ")
+        url = input("Url: ")
 
-    #print(f"gallery-dl {mode} {url}")
-    run = f"gallery-dl {mode} {url}"
-    subprocess.run(run, shell=True)
-    os.system('pause')
+        #print(f"gallery-dl {mode} {url}")
+        run = f"gallery-dl {mode} {url}"
+        subprocess.run(run, shell=True)
+        os.system('pause')
 
 elif dl == "3": #add aria2c
     os.system('cls' if os.name == 'nt' else 'clear')
-    ariaoptions = input("Options for aria2c: ")
-    url = input("Url: ")
-    print(f"aria2c {ariaoptions} {url}")
-    run = f"aria2c {ariaoptions} {url}"
-    subprocess.run(run, shell=True)
-    os.system('pause')
+    mode = input("Options for aria2c: ")
+    
+    if mode.startswith("-h"):
+        run = f"aria2c -h"
+        subprocess.run(run, shell=True)
+        os.system('pause')
+    
+    else:
+        url = input("Url: ")
+        print(f"aria2c {mode} {url}")
+        run = f"aria2c {mode} {url}"
+        subprocess.run(run, shell=True)
+        os.system('pause')
