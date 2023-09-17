@@ -30,7 +30,12 @@ no current aliases for aria2c\n""")
         os.system('cls' if os.name == 'nt' else 'clear')
         mode = input("Mode (type 'modhelp' if not sure what this means): ")
         
-        if mode.startswith("modhelp"):
+        if mode.startswith("-h") or mode == "--help":
+            run = f"yt-dlp -h"
+            subprocess.run(run, shell=True)
+            input("Press Enter to continue...")
+        
+        if mode == "modhelp":
             print("""This is where you would put the first argument like "-F" or "-U"
 here is a list of everything supported here so far:
     
@@ -41,24 +46,19 @@ here is a list of everything supported here so far:
 -f (format, enter format number at next prompt)""")
             input("Press Enter to continue...")
         
-        elif mode.startswith("-h") or ("--help"):
-            run = f"yt-dlp -h"
-            subprocess.run(run, shell=True)
-            input("Press Enter to continue...")
-        
-        elif mode.startswith("-U") or ("--update"):
+        if mode.startswith("-U") or mode == "--update":
             run = f"yt-dlp -U"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
         
-        elif mode.startswith("-F") or ("--list-formats"):
+        elif mode.startswith("-F") or mode == "--list-formats":
             url = input("Url: ")
             #print(f"yt-dlp -F {url}")
             run = f"yt-dlp -F {url}"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
         
-        elif mode.startswith("-x") or ("--extract-audio"):
+        elif mode.startswith("-x") or mode == "--extract-audio":
             audform = input("Audio Format (best (default), aac, alac, flac, m4a, mp3, opus, vorbis, wav): ")
             moreops = input("Additional options: ")
             replacements = { #to make alias' for any other commands just follow the format
@@ -95,12 +95,12 @@ here is a list of everything supported here so far:
                 #print(f"yt-dlp -x {moreops} {url}")
                 run = f"yt-dlp -x {moreops} {url}"
                 subprocess.run(run, shell=True)
-                os.system('pause')
+                input("Press Enter to continue...")
             else:
                 #print(f"yt-dlp -x --audio-format {audform} {moreops} {url}")
                 run = f"yt-dlp -x --audio-format {audform} {moreops} {url}"
                 subprocess.run(run, shell=True)
-                os.system('pause')
+                input("Press Enter to continue...")
         
         elif mode.startswith("-f"):
             vidform = input("Video format: ")
@@ -129,7 +129,7 @@ here is a list of everything supported here so far:
             #print(f"yt-dlp -f {vidform} {moreops} {url}")
             run = f"yt-dlp -f {vidform} {moreops} {url}"
             subprocess.run(run, shell=True)
-            os.system('pause')
+            input("Press Enter to continue...")
     
     elif dl == "2":
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -138,7 +138,7 @@ here is a list of everything supported here so far:
         if mode.startswith("-h") or ("--help"):
             run = f"gallery-dl -h"
             subprocess.run(run, shell=True)
-            os.system('pause')
+            input("Press Enter to continue...")
         
         else:
             
@@ -154,7 +154,7 @@ here is a list of everything supported here so far:
             #print(f"gallery-dl {mode} {url}")
             run = f"gallery-dl {mode} {url}"
             subprocess.run(run, shell=True)
-            os.system('pause')
+            input("Press Enter to continue...")
     
     elif dl == "3":
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -163,11 +163,11 @@ here is a list of everything supported here so far:
         if mode.startswith("-h") or ("--help"):
             run = f"aria2c -h"
             subprocess.run(run, shell=True)
-            os.system('pause')
+            input("Press Enter to continue...")
         
         else:
             url = input("Url ("" are not added to the url, so add them if need be): ")
             print(f"aria2c {mode} {url}")
             run = f"aria2c {mode} {url}"
             subprocess.run(run, shell=True)
-            os.system('pause')
+            input("Press Enter to continue...")
