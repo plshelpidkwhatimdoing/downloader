@@ -135,7 +135,7 @@ here is a list of everything supported here so far:
         os.system('cls' if os.name == 'nt' else 'clear')
         mode = input("Commands (not required): ")
     
-        if mode.startswith("-h") or ("--help"):
+        if mode.startswith("-h") or mode == "--help":
             run = f"gallery-dl -h"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
@@ -160,7 +160,7 @@ here is a list of everything supported here so far:
         os.system('cls' if os.name == 'nt' else 'clear')
         mode = input("Options for aria2c (not required): ")
         
-        if mode.startswith("-h") or ("--help"):
+        if mode.startswith("-h") or mode == "--help":
             run = f"aria2c -h"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
