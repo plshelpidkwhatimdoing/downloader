@@ -52,9 +52,10 @@ here is a list of everything supported here so far:
             input("Press Enter to continue...")
         
         elif mode.startswith("-F") or mode == "--list-formats":
+            moreops = input("Additional Options: ")
             url = input("Url: ")
             #print(f"yt-dlp -F {url}")
-            run = f"yt-dlp -F {url}"
+            run = f"yt-dlp -F {moreops} {url}"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
         
