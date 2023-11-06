@@ -167,7 +167,7 @@ here is a list of everything supported here so far:
             input("Press Enter to continue...")
         
         else:
-            url = input("Url ("" are not added to the url, so add them if need be): ")
+            url = input("""Url ("" are not added to the url, so add them if need be): """)
             print(f"aria2c {mode} {url}")
             run = f"aria2c {mode} {url}"
             subprocess.run(run, shell=True)
