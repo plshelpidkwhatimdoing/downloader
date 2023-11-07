@@ -7,6 +7,7 @@ while True:
     print("""1 - yt-dlp
 2 - gallery-dl
 3 - aria2c
+4 - update script
 Use "-h" to see command aliases I have added\n""")
     dl = input("Downloader to use: ")
     
@@ -172,3 +173,7 @@ here is a list of everything supported here so far:
             run = f"aria2c {mode} {url}"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
+    
+    elif dl == "4":
+        os.system('cls' if os.name == 'nt' else 'clear')
+        subprocess.call(['python', "update.py"], shell=True)
