@@ -132,6 +132,14 @@ here is a list of everything supported here so far:
             run = f"yt-dlp -f {vidform} {moreops} {url}"
             subprocess.run(run, shell=True)
             input("Press Enter to continue...")
+        
+        elif mode == "alt" or mode == "other" or mode == "options":
+            options = input("Custom options: ")
+            url = input("Url: ")
+            #print(f"yt-dlp {options} {url}")
+            run = f"yt-dlp {options} {url}"
+            subprocess.run(run, shell=True)
+            input("Press Enter to continue...")            
     
     elif dl == "2":
         os.system('cls' if os.name == 'nt' else 'clear')
