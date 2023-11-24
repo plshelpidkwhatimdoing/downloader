@@ -46,7 +46,8 @@ here is a list of everything supported here so far:
 -U (update yt-dlp)
 -F (possible formats, recommend using this before -f)
 -x (download audio)
--f (format, enter format number at next prompt)""")
+-f (format, enter format number at next prompt)
+"alt" "other" or "options" will let you input any other custom options not listed here""")
             input("Press Enter to continue...")
         
         if mode.startswith("-U") or mode == "--update":
