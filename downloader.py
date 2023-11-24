@@ -19,6 +19,8 @@ yt-dlp aliases:
 -d : --downloader
 -ws : --write-subs
 -was : --write-auto-subs
+-sd : --skip-download
+"-nd" : "--no-download"
 
 gallery-dl: aliases:
 -z : --zip
@@ -67,6 +69,8 @@ here is a list of everything supported here so far:
                 #"shortalias" : "full command"
                 "-ws" : "--write-subs",
                 "-was" : "--write-auto-subs",
+                "-sd" : "--skip-download",
+                "-nd" : "--no-download",
             }
             #make it look for "-d" standalone (things like --dump-settings wont count)
             removeD = r'(^|\s)-d($|\s)'
