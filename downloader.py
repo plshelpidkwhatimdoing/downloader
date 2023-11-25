@@ -46,8 +46,7 @@ here is a list of everything supported here so far:
 -U (update yt-dlp)
 -F (possible formats, recommend using this before -f)
 -x (download audio)
--f (format, enter format number at next prompt)
-"alt" "other" or "options" will let you input any other custom options not listed here""")
+-f (format, enter format number at next prompt)""")
             input("Press Enter to continue...")
         
         if mode.startswith("-U") or mode == "--update":
@@ -83,7 +82,7 @@ here is a list of everything supported here so far:
                 return ' ' + replacement + ' '
             
             #replace and keep spaces (to add another alias (example -zs) just add it like this "|-zs" ex: '(-ws|-was)' -> '(-ws|-was|-zs)')
-            moreops = re.sub(r'(-ws|-was)', replace_with_spaces, moreops)
+            moreops = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, moreops)
             
             #split input into separate options
             options = moreops.split()
@@ -115,6 +114,8 @@ here is a list of everything supported here so far:
             replacements = {
                 "-ws" : "--write-subs",
                 "-was" : "--write-auto-subs",
+                "-sd" : "--skip-download",
+                "-nd" : "--no-download",
             }
             removeD = r'(^|\s)-d($|\s)'
     
@@ -123,7 +124,7 @@ here is a list of everything supported here so far:
                 replacement = replacements.get(option, option)
                 return ' ' + replacement + ' '
             
-            moreops = re.sub(r'(-ws|-was)', replace_with_spaces, moreops)
+            moreops = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, moreops)
     
             options = moreops.split()
             for i in range(len(options)):
@@ -140,6 +141,29 @@ here is a list of everything supported here so far:
         
         elif mode == "alt" or mode == "other" or mode == "options":
             options = input("Custom options: ")
+            
+            replacements = {
+                "-ws" : "--write-subs",
+                "-was" : "--write-auto-subs",
+                "-sd" : "--skip-download",
+                "-nd" : "--no-download",
+            }
+            removeD = r'(^|\s)-d($|\s)'
+    
+            def replace_with_spaces(match):
+                option = match.group(0)
+                replacement = replacements.get(option, option)
+                return ' ' + replacement + ' '
+            
+            options = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, options)
+    
+            options = options.split()
+            for i in range(len(options)):
+                if options[i] == '-d':
+                    options[i] = '--downloader'
+            
+            options = ' '.join(options)
+            
             url = input("Url: ")
             #print(f"yt-dlp {options} {url}")
             run = f"yt-dlp {options} {url}"
