@@ -71,6 +71,8 @@ here is a list of everything supported here so far:
                 "-was" : "--write-auto-subs",
                 "-sd" : "--skip-download",
                 "-nd" : "--no-download",
+                "-ec" : "--embed-chapters",
+                "-ac" : "--add-chapters",
             }
             #make it look for "-d" standalone (things like --dump-settings wont count)
             removeD = r'(^|\s)-d($|\s)'
@@ -82,7 +84,7 @@ here is a list of everything supported here so far:
                 return ' ' + replacement + ' '
             
             #replace and keep spaces (to add another alias (example -zs) just add it like this "|-zs" ex: '(-ws|-was)' -> '(-ws|-was|-zs)')
-            moreops = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, moreops)
+            moreops = re.sub(r'(-ws|-was|-sd|-nd|-ec|-ac)', replace_with_spaces, moreops)
             
             #split input into separate options
             options = moreops.split()
@@ -116,6 +118,8 @@ here is a list of everything supported here so far:
                 "-was" : "--write-auto-subs",
                 "-sd" : "--skip-download",
                 "-nd" : "--no-download",
+                "-ec" : "--embed-chapters",
+                "-ac" : "--add-chapters",
             }
             removeD = r'(^|\s)-d($|\s)'
     
@@ -124,7 +128,7 @@ here is a list of everything supported here so far:
                 replacement = replacements.get(option, option)
                 return ' ' + replacement + ' '
             
-            moreops = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, moreops)
+            moreops = re.sub(r'(-ws|-was|-sd|-nd|-ec|-ac)', replace_with_spaces, moreops)
     
             options = moreops.split()
             for i in range(len(options)):
@@ -147,6 +151,8 @@ here is a list of everything supported here so far:
                 "-was" : "--write-auto-subs",
                 "-sd" : "--skip-download",
                 "-nd" : "--no-download",
+                "-ec" : "--embed-chapters",
+                "-ac" : "--add-chapters",
             }
             removeD = r'(^|\s)-d($|\s)'
     
@@ -155,7 +161,7 @@ here is a list of everything supported here so far:
                 replacement = replacements.get(option, option)
                 return ' ' + replacement + ' '
             
-            options = re.sub(r'(-ws|-was|-sd|-nd)', replace_with_spaces, options)
+            options = re.sub(r'(-ws|-was|-sd|-nd|-ec|-ac)', replace_with_spaces, options)
     
             options = options.split()
             for i in range(len(options)):
