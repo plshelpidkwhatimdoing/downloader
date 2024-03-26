@@ -28,7 +28,9 @@ yt-dlp aliases:
 gallery-dl: aliases:
 -z : --zip
     
-no current aliases for aria2c\n""")
+aria2c aliases:
+-fan : --file-allocation=none
+-fa= : --file-allocation= (just enter your preferred method without a space, ex: -fa=prealloc)\n""")
         input("Press Enter to continue...")
     
     elif dl == "1":
@@ -49,7 +51,7 @@ here is a list of everything supported here so far:
 -U (update yt-dlp)
 -F (possible formats, recommend using this before -f)
 -x (download audio)
--f (format, enter format number at next prompt)
+-f (format, enter format at next prompt)
 alt, other, options (run anything else not shown here)""")
             input("Press Enter to continue...")
         
@@ -94,7 +96,7 @@ alt, other, options (run anything else not shown here)""")
             #split input into separate options
             options = moreops.split()
             
-            #process each option individually
+            #process -d individually
             for i in range(len(options)):
                 if options[i] == '-d':
                     options[i] = '--downloader'
@@ -218,11 +220,31 @@ alt, other, options (run anything else not shown here)""")
             input("Press Enter to continue...")
         
         else:
+            
             url = input("""Url ("" are not added to the url, so add them if need be): """)
-            print(f"aria2c {mode} {url}")
-            run = f"aria2c {mode} {url}"
-            subprocess.run(run, shell=True)
-            input("Press Enter to continue...")
+            replacements = {
+                "-fan" : "--file-allocation=none",
+                "-fa=" : "--file-allocation="
+                }
+            
+            def replace_with_spaces(match):
+                option = match.group(0)
+                replacement = replacements.get(option, option)
+                if option == "-fa=":
+                    return replacement
+                else:
+                    return ' ' + replacement + ' '
+            
+            mode = re.sub(r'(-fan|-fa=)', replace_with_spaces, mode)
+            
+            options = mode.split()
+            
+            mode = ' '.join(options)
+
+        print(f"aria2c {mode} {url}")
+        # run = f"aria2c {mode} {url}"
+        # subprocess.run(run, shell=True)
+        input("Press Enter to continue...")
     
     elif dl == "4":
         os.system('cls' if os.name == 'nt' else 'clear')
