@@ -241,9 +241,9 @@ alt, other, options (run anything else not shown here)""")
             
             mode = ' '.join(options)
 
-        print(f"aria2c {mode} {url}")
-        # run = f"aria2c {mode} {url}"
-        # subprocess.run(run, shell=True)
+        #print(f"aria2c {mode} {url}")
+        run = f"aria2c {mode} {url}"
+        subprocess.run(run, shell=True)
         input("Press Enter to continue...")
     
     elif dl == "4":
